@@ -4,13 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="testpost, 신비한 비">
-    <meta name="description" content="The largest headingThe second largest headingThe smallest heading
-Text that is a quote
-
-
-Some basic Git commands are:
-12">
+    <meta name="keywords" content="신비한 비">
+    <meta name="description" content="현재 springboot은 기본으로 .yml 을 우선시한다. 하지만 가끔씩 아날로그식? .properties 구석 과 xml 구성으로 값을 가져와 써야 할때가 종종 있다. 그럼 어떻게 사용할까?
+poml.xm 추가
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +19,7 @@ Some basic Git commands are:
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>testpost | 신비한 비</title>
+    <title>신비한 비</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -339,12 +336,12 @@ Some basic Git commands are:
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">testpost</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -401,28 +398,25 @@ Some basic Git commands are:
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="The-largest-heading"><a href="#The-largest-heading" class="headerlink" title="The largest heading"></a>The largest heading</h1><h2 id="The-second-largest-heading"><a href="#The-second-largest-heading" class="headerlink" title="The second largest heading"></a>The second largest heading</h2><h6 id="The-smallest-heading"><a href="#The-smallest-heading" class="headerlink" title="The smallest heading"></a>The smallest heading</h6><blockquote>
-<p>Text that is a quote</p>
-</blockquote>
-<p><img src="https://myoctocat.com/assets/images/base-octocat.svg" alt="This is an image"></p>
-<p>Some basic Git commands are:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git add</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure>
-<p>The background color should be <code>#0969DA</code> for light mode and <code>#0969DA</code> for dark mode.</p>
-<p>This site was built using <a target="_blank" rel="noopener" href="https://github.com/luxury515/luxury515.github.io.git">GitHub Pages</a>.</p>
-<ol>
-<li>First list item<ul>
-<li>First nested list item<ul>
-<li>Second nested list item</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> #739</li>
-<li><input disabled="" type="checkbox"> <a target="_blank" rel="noopener" href="https://github.com/octo-org/octo-repo/issues/740">https://github.com/octo-org/octo-repo/issues/740</a></li>
-<li><input disabled="" type="checkbox"> Add delight to the experience when all tasks are complete :tada:</li>
-</ul>
+                <p>현재 springboot은 기본으로 .yml 을 우선시한다. 하지만 가끔씩 아날로그식? .properties 구석 과 xml 구성으로 값을 가져와 써야 할때가 종종 있다. 그럼 어떻게 사용할까?</p>
+<p>poml.xm 추가</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt;</span><br><span class="line">     &lt;optional&gt;true&lt;/optional&gt;</span><br><span class="line"> &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>application.properties</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">author.name=samsung</span><br><span class="line">author.age=20</span><br></pre></td></tr></table></figure>
+
+<p>설정클래스 상단에 @PropertySource(“classpath:your.properties”)을 사용하면 yml 구성을 로딩한것과 같은 효과다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@PropertySource(value = &#123;&quot;classpath:static/config/authorSetting.properties&quot;&#125;,</span><br><span class="line">        ignoreResourceNotFound = false, encoding = &quot;UTF-8&quot;, name = &quot;authorSetting.properties&quot;)</span><br><span class="line">public class AuthorTest &#123;</span><br><span class="line"> </span><br><span class="line">    @Value(&quot;$&#123;author.name&#125;&quot;)</span><br><span class="line">    private String name;</span><br><span class="line">    @Value(&quot;$&#123;author.age&#125;&quot;)</span><br><span class="line">    private int age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>@PropertySource 의 속성 요약 1.value：설정파일 경로. 2.ignoreResourceNotFound：지정파일 존재하지 않을시 에러! 기본옵션 false 이다.true 설정해야 파일 없으면 오류. 실제 개발시 ignoreResourceNotFound 를 false로 설정한다. 3.encoding：파일 읽어드릴시 UTF-8 인코딩.</p>
+<p>@Value 사용이 좀 많을때 등장한것이 바로 @ConfigurationProperties 옵션이다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@ConfigurationProperties(prefix = &quot;author&quot;)</span><br><span class="line">@PropertySource(value = &#123;&quot;classpath:static/config/authorSetting.properties&quot;&#125;,</span><br><span class="line">        ignoreResourceNotFound = false, encoding = &quot;UTF-8&quot;, name = &quot;authorSetting.properties&quot;)</span><br><span class="line">public class AuthorTest &#123;</span><br><span class="line"> </span><br><span class="line">    private String name;</span><br><span class="line">    private int age;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@EnableConfigurationProperties</span><br><span class="line">public class DemoController &#123;</span><br><span class="line"> </span><br><span class="line">    @Autowired</span><br><span class="line">    AuthorTest authorTest;</span><br><span class="line"> </span><br><span class="line">    @RequestMapping(&quot;/&quot;)</span><br><span class="line">    public String index()&#123;</span><br><span class="line">        return &quot;author&#x27;s name is &quot; + authorTest.getName() + &quot;,ahtuor&#x27;s age is &quot; + authorTest.getAge();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>마지막으로!</p>
+<p>@ConfigurationProperties 사용하기위 위해서는 꼭 @EnableConfigurationProperties 를 써서 활성화 한다.</p>
+<p>끝!</p>
 
                 
             </div>
@@ -572,9 +566,9 @@ Some basic Git commands are:
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="testpost">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">testpost</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
